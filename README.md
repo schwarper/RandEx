@@ -19,7 +19,7 @@ RandEx is a library designed to provide advanced randomisation functions in C#. 
 - **Thread-safe implementation**: Each thread maintains its own state for safe and efficient concurrent use, making it suitable for multi-threaded environments.
 
 ## Installation
--
+Run `dotnet add package RandEx`
 
 ## Example
 ```csharp
