@@ -89,6 +89,16 @@ enum Colors { Red, Green, Blue, Yellow }
 Colors randomColor = RandomEx.GetRandomEnumValue<Colors>();
 ```
 
+Random Char
+```csharp
+// Generate a char (From 'a' to 'z')
+char randomChar = RandomEx.GetRandomChar('a', 'z');
+// Generate a char (From '0' to '9')
+char randomChar2 = RandomEx.GetRandomChar('0', '9');
+// Generate a char (From ' ' to '~') default
+char randomChar3 = RandomEx.GetRandomChar();
+```
+
 ## API Reference
 
 #### Random Number Methods
@@ -118,3 +128,4 @@ Colors randomColor = RandomEx.GetRandomEnumValue<Colors>();
 | `GetRandomGuid()`                     | Generates a random GUID.                                                             |
 | `GetRandomBytes(int length)`          | Generates a random byte array of the specified length.                               |
 | `GetRandomByte()`                     | Generates a random byte (0-255).                                                     |
+| `GetRandomChar(char minChar = ' ', char maxChar = '~')`                     | Retrieves a random character from a specified inclusive character range, based on Unicode values.                                                     |
