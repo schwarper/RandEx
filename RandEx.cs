@@ -227,7 +227,8 @@ public static class RandomEx
 
         if (minDate >= maxDate)
         {
-            throw new ArgumentOutOfRangeException(nameof(minDate),
+            throw new ArgumentOutOfRangeException(
+                nameof(minDate),
                 $"minDate ({minDate:yyyy-MM-ddTHH:mm:ss.fff}) must be earlier than maxDate ({maxDate:yyyy-MM-ddTHH:mm:ss.fff})."
             );
         }
