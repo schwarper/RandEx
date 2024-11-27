@@ -257,4 +257,26 @@ public static class RandomEx
             (values[i], values[j]) = (values[j], values[i]);
         }
     }
+
+    /// <summary>
+    /// Retrieves a random character from a specified inclusive character range, based on Unicode values.
+    /// The default range is from space (' ') to tilde ('~'), covering printable ASCII characters.
+    /// </summary>
+    /// <param name="minChar">The inclusive lower bound of the character range. Default is the space character (' ').</param>
+    /// <param name="maxChar">The inclusive upper bound of the character range. Default is the tilde character ('~').</param>
+    /// <returns>A random character within the specified range.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="minChar"/> is greater than or equal to <paramref name="maxChar"/>.</exception>
+
+    public static char GetRandomChar(char minChar = ' ', char maxChar = '~')
+    {
+        if (minChar >= maxChar)
+        {
+            throw new ArgumentOutOfRangeException(nameof(minChar), "minChar must be less than or equal to maxChar.");
+        }
+
+        int min = minChar;
+        int max = maxChar + 1;
+
+        return (char)GetRandomInt(min, max);
+    }
 }
