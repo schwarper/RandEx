@@ -3,7 +3,7 @@ name: Build & Publish
 on:
   push:
     branches:
-      - master
+      - main
     paths-ignore:
       - 'README.MD'
       - '.github/workflows/**'
