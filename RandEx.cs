@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 
 namespace RandEx;
@@ -278,5 +279,20 @@ public static class RandomEx
         int max = maxChar + 1;
 
         return (char)GetRandomInt(min, max);
+    }
+
+    public static string GetRandomString(int length, bool safe = false)
+    {
+        int byteCount = (int)Math.Ceiling(length + 0.75);
+        byte[] bytes = RandomEx.GetRandomBytes(byteCount);
+
+        string baseString = Convert.ToBase64String(bytes);
+
+        if (safe)
+        {
+            baseString = baseString.Replace("+", "-").Replace("/", "_");
+        }
+
+        return baseString.Replace("=", "");
     }
 }
