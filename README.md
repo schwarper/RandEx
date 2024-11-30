@@ -128,4 +128,4 @@ char randomChar3 = RandomEx.GetRandomChar();
 | `GetRandomGuid()`                     | Generates a random GUID.                                                             |
 | `GetRandomBytes(int length)`          | Generates a random byte array of the specified length.                               |
 | `GetRandomByte()`                     | Generates a random byte (0-255).                                                     |
-| `GetRandomChar(char minChar = ' ', char maxChar = '~')`                     | Retrieves a random character from a specified inclusive character range, based on Unicode values.                                                     |
+| `GetRandomChar(char minChar = ' ', char maxChar = '~')`                     | Generates a random character from a specified inclusive character range, based on Unicode values.                                                     |
