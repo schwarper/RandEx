@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using RandEx.Utils;
+using static RandEx.Utils.RandomStringCharacter;
 using static RandEx.Internal.RandomGenerator;
 
 namespace RandEx;
@@ -244,6 +246,55 @@ public static class RandomEx
         int max = maxChar + 1;
 
         return (char)GetRandomInt(min, max);
+    }
+
+    /// <summary>
+    /// Generates a random string of the specified length using selected character sets.
+    /// By default, it includes lowercase letters, uppercase letters, and numbers.
+    /// Additional character sets can be included or excluded via the <paramref name="options"/> parameter.
+    /// </summary>
+    /// <param name="length">The desired length of the generated string. Must be greater than zero.</param>
+    /// <param name="options">
+    /// Specifies the character sets to include in the string. 
+    /// Default is a combination of lowercase letters, uppercase letters, and numbers.
+    /// </param>
+    /// <returns>A random string of the specified length, generated from the selected character sets.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when <paramref name="length"/> is less than or equal to zero.
+    /// </exception>
+    /// <exception cref="ArgumentException">
+    /// Thrown when no valid character sets are selected via <paramref name="options"/>.
+    /// </exception>
+    public static string GetRandomString(int length, RandomStringOptions options = RandomStringOptions.IncludeLowercaseLetters | RandomStringOptions.IncludeUppercaseLetters | RandomStringOptions.IncludeNumbers)
+    {
+        if (length <= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(length), "Length must be greater than zero.");
+        }
+
+        List<char> chars = [];
+
+        foreach (var option in RandomCharacterSets)
+        {
+            if (options.HasFlag(option.Key))
+            {
+                chars.AddRange(option.Value);
+            }
+        }
+
+        if (chars.Count == 0)
+        {
+            throw new ArgumentException("No valid character sets were selected based on the provided RandomStringOptions.", nameof(options));
+        }
+
+        Span<char> result = stackalloc char[length];
+
+        for (int i = 0; i < length; i++)
+        {
+            result[i] = chars[GetRandomInt(0, chars.Count)];
+        }
+
+        return new string(result);
     }
 
     /// <summary>
