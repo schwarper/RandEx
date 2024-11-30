@@ -1,29 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using static RandEx.Internal.RandomGenerator;
 
 namespace RandEx;
 
 public static class RandomEx
 {
-    #region Fields
-    private static readonly ThreadLocal<ulong> _threadState = new(GenerateSeed);
-    private static readonly ThreadLocal<(bool HasSpare, double Spare)> _gaussianState = new(() => (false, 0.0), true);
-    private static readonly ThreadLocal<ulong> _sequence = new(GenerateSeed);
-
-    private static ulong GenerateSeed() => ((ulong)DateTime.UtcNow.Ticks << 32) | (ulong)Environment.TickCount64;
-    private static ulong RotateRight(ulong value, int count) => unchecked((value >> (count % 32)) | (value << (32 - (count % 32))));
-
-    private static ulong GenerateRandom()
-    {
-        ulong state = _threadState.Value;
-        ulong oldState = state;
-        _threadState.Value = oldState * 6364136223846793005UL + _sequence.Value;
-        ulong xorshifted = ((oldState ^ (oldState >> 18)) >> 27);
-        ulong rot = oldState >> 59;
-        return RotateRight(xorshifted, (int)rot);
-    }
-    #endregion
+    internal static readonly ThreadLocal<ulong> _threadState = new(GenerateSeed);
+    internal static readonly ThreadLocal<(bool HasSpare, double Spare)> _gaussianState = new(() => (false, 0.0), true);
+    internal static readonly ThreadLocal<ulong> _sequence = new(GenerateSeed);
 
     /// <summary>
     /// Sets a custom seed for random number generation.
@@ -37,7 +23,7 @@ public static class RandomEx
             throw new ArgumentException("Seed must be a positive non-zero value.", nameof(seed));
         }
 
-        ulong newSeed = (ulong)seed * 6364136223846793005UL;
+        ulong newSeed = (ulong)seed * Multiplier;
         _threadState.Value = newSeed;
         _sequence.Value = GenerateSeed();
     }
@@ -239,27 +225,7 @@ public static class RandomEx
     }
 
     /// <summary>
-    /// Shuffles the elements in the provided list.
-    /// </summary>
-    /// <param name="values">The list to shuffle.</param>
-    public static void Shuffle<T>(List<T> values)
-    {
-        if (values.Count <= 1)
-        {
-            return;
-        }
-
-        int listCount = values.Count;
-
-        for (int i = listCount - 1; i > 0; i--)
-        {
-            int j = GetRandomInt(0, i + 1);
-            (values[i], values[j]) = (values[j], values[i]);
-        }
-    }
-
-    /// <summary>
-    /// Retrieves a random character from a specified inclusive character range, based on Unicode values.
+    /// Generates a random character from a specified inclusive character range, based on Unicode values.
     /// The default range is from space (' ') to tilde ('~'), covering printable ASCII characters.
     /// </summary>
     /// <param name="minChar">The inclusive lower bound of the character range. Default is the space character (' ').</param>
@@ -278,5 +244,25 @@ public static class RandomEx
         int max = maxChar + 1;
 
         return (char)GetRandomInt(min, max);
+    }
+
+    /// <summary>
+    /// Shuffles the elements in the provided list.
+    /// </summary>
+    /// <param name="values">The list to shuffle.</param>
+    public static void Shuffle<T>(List<T> values)
+    {
+        if (values.Count <= 1)
+        {
+            return;
+        }
+
+        int listCount = values.Count;
+
+        for (int i = listCount - 1; i > 0; i--)
+        {
+            int j = GetRandomInt(0, i + 1);
+            (values[i], values[j]) = (values[j], values[i]);
+        }
     }
 }
