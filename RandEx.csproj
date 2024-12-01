@@ -27,6 +27,6 @@
 	<PropertyGroup>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
-		<PackageIcon>RandEx.png</PackageIcon>
+		<PackageIcon>image\RandEx.png</PackageIcon>
 	</PropertyGroup>
 </Project>
