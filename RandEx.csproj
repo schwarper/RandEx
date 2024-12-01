@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>		
+	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<Title>RandEx</Title>
 		<Description>RandEx is a library designed to provide advanced randomisation functions in C#. It provides various methods for generating random numbers, selecting random elements, shuffling collections and more.</Description>
