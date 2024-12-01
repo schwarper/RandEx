@@ -101,6 +101,23 @@ public static class RandomEx
     }
 
     /// <summary>
+	/// Generates a random float number in the specified range.
+	/// </summary>
+	/// <param name="minValue">The inclusive lower bound of the range. Default is 0</param>
+	/// <param name="maxValue">The exclusive upper bound of the range. Default is float.MaxValue</param>
+	/// <returns>A random float number between minValue and maxValue.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Thrown if minValue is greater than or equal to maxValue.</exception>
+	public static float GetRandomFloat(float minValue = 0, float maxValue = float.MaxValue)
+    {
+        if (minValue >= maxValue)
+        {
+            throw new ArgumentOutOfRangeException(nameof(minValue), "minValue must be less than maxValue.");
+        }
+
+        return minValue + (float)(GetRandomDouble() * (maxValue - minValue));
+    }
+
+    /// <summary>
     /// Generates a random Gaussian number (normal distribution with mean 0 and standard deviation 1).
     /// </summary>
     /// <returns>A random Gaussian value from a normal distribution with mean 0 and standard deviation 1.</returns>
@@ -298,6 +315,27 @@ public static class RandomEx
     }
 
     /// <summary>
+	/// Generates a random geographic coordinate (latitude, longitude).
+	/// </summary>
+	/// <returns>A tuple representing latitude and longitude.</returns>
+	public static (double Latitude, double Longitude) GetRandomGeoCoordinate()
+    {
+        double latitude = GetRandomDouble() * 180.0 - 90.0;
+        double longitude = GetRandomDouble() * 360.0 - 180.0;
+
+        return (Math.Round(latitude, 6), Math.Round(longitude, 6));
+    }
+
+    /// <summary>
+    /// Generates a random hexadecimal color code.
+    /// </summary>
+    /// <returns>A hex color code (e.g., "#FF5733").</returns>
+    public static string GetRandomHexColor()
+    {
+        return $"#{GetRandomInt(0, 256):X2}{GetRandomInt(0, 256):X2}{GetRandomInt(0, 256):X2}";
+    }
+
+    /// <summary>
     /// Shuffles the elements in the provided list.
     /// </summary>
     /// <param name="values">The list to shuffle.</param>
@@ -316,42 +354,4 @@ public static class RandomEx
             (values[i], values[j]) = (values[j], values[i]);
         }
     }
-
-	/// <summary>
-	/// Generates a random geographic coordinate (latitude, longitude).
-	/// </summary>
-	/// <returns>A tuple representing latitude and longitude.</returns>
-	public static (double Latitude, double Longitude) GetRandomGeoCoordinate()
-	{
-		double latitude = GetRandomDouble() * 180.0 - 90.0; // -90 to 90
-		double longitude = GetRandomDouble() * 360.0 - 180.0; // -180 to 180
-		return (Math.Round(latitude, 6), Math.Round(longitude, 6));
-	}
-
-	/// <summary>
-	/// Generates a random floating-point number in the specified range.
-	/// </summary>
-	/// <param name="minValue">The inclusive lower bound of the range.</param>
-	/// <param name="maxValue">The exclusive upper bound of the range.</param>
-	/// <returns>A random floating-point number between minValue and maxValue.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">Thrown if minValue is greater than or equal to maxValue.</exception>
-	public static double GetRandomFloat(double minValue, double maxValue)
-	{
-		if (minValue >= maxValue)
-		{
-			throw new ArgumentOutOfRangeException(nameof(minValue), "minValue must be less than maxValue.");
-		}
-
-		return minValue + (GetRandomDouble() * (maxValue - minValue));
-	}
-
-	/// <summary>
-	/// Generates a random hexadecimal color code.
-	/// </summary>
-	/// <returns>A hex color code (e.g., "#FF5733").</returns>
-	public static string GetRandomHexColor()
-	{
-		return $"#{GetRandomInt(0, 256):X2}{GetRandomInt(0, 256):X2}{GetRandomInt(0, 256):X2}";
-	}
-
 }
