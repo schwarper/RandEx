@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using RandEx.Utils;
 using static RandEx.Utils.RandomStringCharacter;
 using static RandEx.Internal.RandomGenerator;
@@ -9,10 +8,6 @@ namespace RandEx;
 
 public static class RandomEx
 {
-    internal static readonly ThreadLocal<ulong> _threadState = new(GenerateSeed);
-    internal static readonly ThreadLocal<(bool HasSpare, double Spare)> _gaussianState = new(() => (false, 0.0), true);
-    internal static readonly ThreadLocal<ulong> _sequence = new(GenerateSeed);
-
     /// <summary>
     /// Sets a custom seed for random number generation.
     /// </summary>
@@ -259,10 +254,7 @@ public static class RandomEx
             throw new ArgumentOutOfRangeException(nameof(minChar), "minChar must be less than or equal to maxChar.");
         }
 
-        int min = minChar;
-        int max = maxChar + 1;
-
-        return (char)GetRandomInt(min, max);
+        return (char)GetRandomInt(minChar, maxChar + 1);
     }
 
     /// <summary>
