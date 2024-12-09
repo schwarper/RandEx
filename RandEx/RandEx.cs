@@ -258,7 +258,7 @@ public static class RandomEx
     /// <exception cref="ArgumentException">
     /// Thrown if no valid character sets are selected based on the provided <paramref name="options"/>.
     /// </exception>
-    public static string GetRandomString(int length, RandomStringOptions options = RandomStringOptions.IncludeLowercaseLetters | RandomStringOptions.IncludeUppercaseLetters | RandomStringOptions.IncludeNumbers | RandomStringOptions.IncludeSpecialCharacters)
+    public static string GetRandomString(int length, RandomStringOptions options = RandomStringOptions.IncludeLowercaseLetters | RandomStringOptions.IncludeUppercaseLetters | RandomStringOptions.IncludeNumbers)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);
 
