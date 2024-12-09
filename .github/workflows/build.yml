@@ -46,8 +46,10 @@ jobs:
       - name: Restore Dependencies
         run: dotnet restore
 
-      - name: Go to RandEx
-        run: cd RandEx
+      - name: Ignore RandExTest
+        shell: bash
+        run: |
+          mv RandExTest RandExTest.ignore || echo "RandExTest does not exist"
 
       - name: Build and Pack NuGet Package
         run: |
