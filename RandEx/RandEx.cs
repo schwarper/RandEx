@@ -302,7 +302,7 @@ public static class RandomEx
     /// <summary>
     /// Generates a random hexadecimal color code.
     /// </summary>
-    /// <returns>A hex color code (e.g., "#FF5733").</returns>
+    /// <returns>A hex color code (e.g., "#FF5633").</returns>
     public static string GetRandomHexColor()
     {
         return $"#{GetRandomInt(0, 256):X2}{GetRandomInt(0, 256):X2}{GetRandomInt(0, 256):X2}";
