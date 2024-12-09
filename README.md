@@ -107,6 +107,7 @@ char randomChar3 = RandomEx.GetRandomChar();
 |---------------------------------------|---------------------------------------------------------------------------------------|
 | `SetSeed(int seed)`                   | Sets a custom seed for deterministic randomization.                                  |
 | `GetRandomInt(int minValue = 0, int maxValue = int.MaxValue)` | Generates a random integer between `minValue` and `maxValue`.                     |
+| `GetRandomFloat(float minValue = 0.0f, float maxValue = float.MaxValue)`                 | Generates a random float number in the specified range.          |
 | `GetRandomDouble()`                   | Generates a random double between `0.0` and `1.0`.                                   |
 | `GetRandomBool()`                     | Generates a random boolean (`true` or `false`).                                      |
 | `GetRandomGaussian()`                 | Generates a random number from a Gaussian distribution (mean=0, stddev=1).          |
@@ -125,8 +126,9 @@ char randomChar3 = RandomEx.GetRandomChar();
 |---------------------------------------|---------------------------------------------------------------------------------------|
 | `GetRandomDateTime(DateTime? minDate = null, DateTime? maxDate = null)` | Generates a random `DateTime` between the specified `minDate` and `maxDate`. If minDate is null, it defaults to DateTime.MinValue. Similarly, if maxDate is null, it defaults to DateTime.MaxValue.|
 | `GetRandomByteColor()`                | Generates a random color represented as a byte tuple `(R, G, B)`.                    |
-| `GetRandomGuid()`                     | Generates a random GUID.                                                             |
 | `GetRandomBytes(int length)`          | Generates a random byte array of the specified length.                               |
 | `GetRandomByte()`                     | Generates a random byte (0-255).                                                     |
 | `GetRandomChar(char minChar = ' ', char maxChar = '~')`                     | Generates a random character from a specified inclusive character range, based on Unicode values                                                     |
 | `GetRandomString(int length, RandomStringOptions options = ...)`                | Generates a random string of the specified length using selected character sets.By default, it includes lowercase letters, uppercase letters, and numbers.                    |
+| `GetRandomHexColor()`                | Generates a random hexadecimal color code. (e.g., "#FF5733")                    |
+| `(double Latitude, double Longitude) GetRandomGeoCoordinate()`                | Generates a random geographic coordinate (latitude, longitude).                    |
