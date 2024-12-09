@@ -48,7 +48,7 @@ jobs:
 
       - name: Build and Pack NuGet Package
         run: |
-          dotnet build -c Release --no-restore /p:Version=1.0.${{ env.BUILD_NUMBER }}
+          dotnet build -c Release --no-restore /p:Version=1.0.${{ env.BUILD_NUMBER }} --output ./RandEx
           dotnet pack -c Release --no-build --output ./nupkg /p:Version=1.0.${{ env.BUILD_NUMBER }}
 
       - name: Check Artifacts
@@ -63,7 +63,7 @@ jobs:
       - name: Create Release Artifact (ZIP)
         run: |
           mkdir release
-          cp -r bin/Release/net8.0/* ./release/
+          cp -r RandEx/bin/Release/net8.0/* ./release/
           cd release
           zip -r ../RandEx-v${{ env.BUILD_NUMBER }}-${{ env.GITHUB_SHA_SHORT }}.zip *
 
