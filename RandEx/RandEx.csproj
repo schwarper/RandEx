@@ -7,26 +7,17 @@
 		<Copyright>schwarper</Copyright>
 		<RepositoryUrl>https://github.com/schwarper/RandEx</RepositoryUrl>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	</PropertyGroup>
-	<ItemGroup>
-
-	  <EmbeddedResource Include="image\RandEx.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Include="README.md" Pack="true" PackagePath="README.md" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Update="image\RandEx.png">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	</ItemGroup>
-
-	<PropertyGroup>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
-		<PackageIcon>image\RandEx.png</PackageIcon>
+		<PackageIcon>RandEx.png</PackageIcon>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<IncludeXmlDocumentation>true</IncludeXmlDocumentation>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="..\image\RandEx.png" />
+		<None Include="..\README.md" Pack="true" PackagePath="README.md" />
+		<None Include="..\image\RandEx.png" Pack="true" PackagePath="RandEx.png" />
+	</ItemGroup>
 </Project>
