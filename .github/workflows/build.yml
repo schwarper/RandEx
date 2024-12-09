@@ -49,11 +49,11 @@ jobs:
       - name: Ignore RandExTest
         shell: bash
         run: |
-          mv RandExTest RandExTest.ignore || echo "RandExTest does not exist"
+          mv RandExTest RandExTest.ignore || echo "Ignored RandExTest"
 
       - name: Build and Pack NuGet Package
         run: |
-          dotnet build -c Release --no-restore /p:Version=1.0.${{ env.BUILD_NUMBER }}
+          dotnet build RandEx/RandEx.csproj -c Release --no-restore /p:Version=1.0.${{ env.BUILD_NUMBER }}
           dotnet pack -c Release --no-build --output ./nupkg /p:Version=1.0.${{ env.BUILD_NUMBER }}
 
       - name: Check Artifacts
