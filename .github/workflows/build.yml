@@ -59,6 +59,11 @@ jobs:
           echo "Listing contents of nupkg directory"
           ls -la ./nupkg/
 
+      - name: Clear cache
+        id: clear_cache
+        with:
+          cache: none
+
       - name: Publish to NuGet
         run: |
           dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY_RANDEX }} --source https://api.nuget.org/v3/index.json --skip-duplicate
