@@ -3,6 +3,12 @@
 
 RandEx is a library designed to provide advanced randomisation functions in C#. It provides various methods for generating random numbers, selecting random elements, shuffling collections and more.
 
+# Nuget
+[![NuGet Badge](https://img.shields.io/nuget/v/RandEx)](https://www.nuget.org/packages/RandEx)
+
+## Installation
+Run `dotnet add package RandEx`
+
 ## Features
 - **Custom seed management**: Initialize random number generation with custom seeds.
 - **Flexible random number generation**:
@@ -17,9 +23,6 @@ RandEx is a library designed to provide advanced randomisation functions in C#. 
   * Generate random colours, GUIDs, and byte arrays.
   * Enumeration support: Easily select random values from any enumeration.
 - **Thread-safe implementation**: Each thread maintains its own state for safe and efficient concurrent use, making it suitable for multi-threaded environments.
-
-## Installation
-Run `dotnet add package RandEx`
 
 ## Example
 ```csharp
